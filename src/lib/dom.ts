@@ -2,6 +2,7 @@
 // 拷贝的element-plugin/package/utils/dom.ts
 // *******************************
 
+import { FreeObject } from "@/types/app";
 import { camelize, isObject } from "./tool";
 
 const isServer = false;
@@ -120,15 +121,15 @@ export const getStyle = function (
     styleName = "cssFloat";
   }
   try {
-    const style = element.style[styleName];
+    const style = (element.style as FreeObject)[styleName];
     if (style) return style;
 
     if (!document || !document.defaultView) return "";
 
     const computed = document.defaultView.getComputedStyle(element, "");
-    return computed ? computed[styleName] : "";
+    return computed ? (computed as FreeObject)[styleName] : "";
   } catch (e) {
-    return element.style[styleName];
+    return (element.style as FreeObject)[styleName];
   }
 };
 
@@ -142,11 +143,11 @@ export function setStyle(
 
   if (isObject(styleName)) {
     Object.keys(styleName).forEach((prop) => {
-      setStyle(element, prop, styleName[prop]);
+      setStyle(element, prop, (styleName as FreeObject)[prop]);
     });
   } else {
     styleName = camelize(styleName);
-    element.style[styleName] = value;
+    (element.style as FreeObject)[styleName] = value;
   }
 }
 
@@ -204,7 +205,8 @@ export const isInContainer = (
   if (isServer || !el || !container) return false;
 
   const elRect = el.getBoundingClientRect();
-  let containerRect: Partial<DOMRect>;
+  // let containerRect: Partial<DOMRect>;
+  let containerRect: FreeObject;
 
   if (
     [window, document, document.documentElement, null, undefined].includes(
