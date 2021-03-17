@@ -7,18 +7,20 @@ import {
   isArray,
   isObject,
   isString,
+  isPromise,
   looseEqual,
 } from "@vue/shared";
 
 export {
-  hasOwn,
-  isObject,
-  isArray,
-  isString,
-  capitalize,
   camelize,
-  looseEqual,
+  capitalize,
   extend,
+  hasOwn,
+  isArray,
+  isObject,
+  isString,
+  isPromise,
+  looseEqual,
 };
 
 export function dateFormat(

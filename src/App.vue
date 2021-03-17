@@ -1,5 +1,6 @@
 <template>
-  <frame-view />
+  <!-- <frame-view /> -->
+  <router-view></router-view>
 </template>
 
 <style lang="scss">

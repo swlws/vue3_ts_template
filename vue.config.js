@@ -3,7 +3,7 @@ const path = require("path");
 const resolve = (dir) => path.resolve(__dirname, dir);
 
 module.exports = {
-  lintOnSave: true,
+  lintOnSave: false,
   publicPath: "./",
   chainWebpack: (config) => {
     config.resolve.alias.set("@lib", resolve("src/lib"));
@@ -20,7 +20,7 @@ module.exports = {
     contentBase: resolve("public"), // 上下文路径
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:8081",
+        target: "http://127.0.0.1:8080",
         changeOrigin: true,
       },
     },

@@ -6,15 +6,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    redirect: "/project-issue-user",
-  },
-  {
-    path: "/project-issue-user",
-    component: _import("/project-issue-user/index.vue"),
-  },
-  {
-    path: "/user-project-issue",
-    component: _import("/user-project-issue/index.vue"),
+    component: _import("/home/index.vue"),
   },
 ];
 

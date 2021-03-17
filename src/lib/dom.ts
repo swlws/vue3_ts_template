@@ -7,12 +7,10 @@ import { camelize, isObject } from "./tool";
 
 const isServer = false;
 
-/* istanbul ignore next */
 const trim = function (s: string) {
   return (s || "").replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, "");
 };
 
-/* istanbul ignore next */
 export const on = function (
   element: HTMLElement | Document | Window,
   event: string,
@@ -24,7 +22,6 @@ export const on = function (
   }
 };
 
-/* istanbul ignore next */
 export const off = function (
   element: HTMLElement | Document | Window,
   event: string,
@@ -36,7 +33,6 @@ export const off = function (
   }
 };
 
-/* istanbul ignore next */
 export const once = function (
   el: HTMLElement,
   event: string,
@@ -44,7 +40,6 @@ export const once = function (
 ): void {
   const listener = function (...args: unknown[]) {
     if (fn) {
-      // eslint-disable-next-line
       fn.apply(this, args);
     }
     off(el, event, listener);
@@ -52,7 +47,6 @@ export const once = function (
   on(el, event, listener);
 };
 
-/* istanbul ignore next */
 export function hasClass(el: HTMLElement, cls: string): boolean {
   if (!el || !cls) return false;
   if (cls.indexOf(" ") !== -1)
@@ -64,7 +58,6 @@ export function hasClass(el: HTMLElement, cls: string): boolean {
   }
 }
 
-/* istanbul ignore next */
 export function addClass(el: HTMLElement, cls: string): void {
   if (!el) return;
   let curClass = el.className;
@@ -85,7 +78,6 @@ export function addClass(el: HTMLElement, cls: string): void {
   }
 }
 
-/* istanbul ignore next */
 export function removeClass(el: HTMLElement, cls: string): void {
   if (!el || !cls) return;
   const classes = cls.split(" ");
@@ -106,7 +98,6 @@ export function removeClass(el: HTMLElement, cls: string): void {
   }
 }
 
-/* istanbul ignore next */
 // Here I want to use the type CSSStyleDeclaration, but the definition for CSSStyleDeclaration
 // has { [index: number]: string } in its type annotation, which does not satisfy the method
 // camelize(s: string)
@@ -133,7 +124,6 @@ export const getStyle = function (
   }
 };
 
-/* istanbul ignore next */
 export function setStyle(
   element: HTMLElement,
   styleName: CSSStyleDeclaration | string,
