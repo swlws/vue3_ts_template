@@ -1,10 +1,10 @@
 <template>
   <article class="frame-view">
     <header class="frame-view-header">
-      <header>JIRA-Log</header>
+      <header>导航</header>
       <nav>
-        <router-link to="/project-issue-user">项目-问题-用户</router-link>
-        <router-link to="/user-project-issue">用户-项目-问题</router-link>
+        <router-link to="/project-issue-user">菜单一</router-link>
+        <router-link to="/user-project-issue">菜单二</router-link>
       </nav>
     </header>
 

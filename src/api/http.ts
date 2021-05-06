@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { FreeObject } from "@/types/app";
+import { PlainObject } from "@/typings/app";
 
 import adapter from "./adapter";
 
@@ -88,7 +88,7 @@ getInstance().interceptors.response.use(preHandleResponse, errorHandle);
 
 export function post(
   url: string,
-  data?: FreeObject,
+  data?: PlainObject,
   config?: AxiosRequestConfig
 ) {
   return getInstance().post(url, data, config);
@@ -96,7 +96,7 @@ export function post(
 
 export function del(
   url: string,
-  data?: FreeObject,
+  data?: PlainObject,
   config?: AxiosRequestConfig
 ) {
   return getInstance().delete(url, { data, ...config });
@@ -104,7 +104,7 @@ export function del(
 
 export function put(
   url: string,
-  data?: FreeObject,
+  data?: PlainObject,
   config?: AxiosRequestConfig
 ) {
   return getInstance().put(url, data, config);
@@ -112,7 +112,7 @@ export function put(
 
 export function get(
   url: string,
-  params?: FreeObject,
+  params?: PlainObject,
   config?: AxiosRequestConfig
 ) {
   return getInstance().get(url, { params, ...config });
@@ -120,7 +120,7 @@ export function get(
 
 export function blob(
   url: string,
-  params?: FreeObject,
+  params?: PlainObject,
   config?: AxiosRequestConfig
 ) {
   return getInstance().get(url, { params, ...config, responseType: "blob" });

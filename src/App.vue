@@ -1,5 +1,4 @@
 <template>
-  <!-- <frame-view /> -->
   <router-view></router-view>
 </template>
 
@@ -10,5 +9,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background-color: #f5f6f7;
 }
 </style>
