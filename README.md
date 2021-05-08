@@ -1,8 +1,8 @@
-# vue3_demo_03
+# vue3_ts_template
 
 ## Proeject create
 
-vue create vue3_demo_03
+vue create vue3_ts_template
 
 ## Project setup
 

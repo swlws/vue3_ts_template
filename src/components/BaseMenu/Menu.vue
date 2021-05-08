@@ -71,6 +71,7 @@ export default defineComponent({
   grid-template-columns: repeat(3, 1fr);
 
   > .item {
+    cursor: pointer;
     padding: 10px;
     margin: 10px;
     border: 1px solid #e8e8e8;

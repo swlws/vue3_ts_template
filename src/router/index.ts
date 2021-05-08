@@ -17,12 +17,15 @@ function noAuth(path: string) {
 
 function generateRoutes() {
   const routes = [];
-  for (const { path } of menu) {
+  for (const { path, label } of menu) {
     if (!path) continue;
 
     routes.push({
       path: path,
       component: _import(path),
+      meta: {
+        title: label,
+      },
     });
   }
 
@@ -54,6 +57,10 @@ router.beforeEach((to, from, next) => {
     loadEnd = true;
   }
 
+  const title: string = to.meta.title as string;
+  if (title) {
+    document.title = `VUE3-${title}`;
+  }
   next();
 });
 
