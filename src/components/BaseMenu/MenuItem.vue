@@ -1,5 +1,10 @@
 <template>
-  <el-popover placement="bottom" trigger="hover" v-if="hasChild">
+  <el-popover
+    placement="bottom"
+    trigger="hover"
+    v-if="hasChild"
+    v-model:visible="visible"
+  >
     <section class="menu-body" ref="menuGroupRef">
       <div
         v-for="item in data.child"
@@ -20,7 +25,12 @@
       </div>
     </template>
   </el-popover>
-  <div v-else class="menu-item" :class="{ 'two-checked': data.id === twoId }">
+  <div
+    v-else
+    class="menu-item"
+    :class="{ 'two-checked': data.id === twoId }"
+    @click="secondClick"
+  >
     {{ data.label }}
   </div>
 </template>
@@ -49,6 +59,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const menuGroupRef = ref();
+    const visible = ref(false);
 
     onMounted(() => {
       clickProxy(menuGroupRef.value as HTMLElement, (target) => {
@@ -60,6 +71,8 @@ export default defineComponent({
         router.push(path);
         emit("update:threeId", id);
         emit("update:twoId", pid);
+
+        visible.value = false;
       });
     });
 
@@ -68,9 +81,22 @@ export default defineComponent({
       return Array.isArray(data.child) && data.child.length > 0;
     });
 
+    const secondClick = () => {
+      const path = props.data.path;
+      const id = props.data.id;
+
+      if (!path) return;
+
+      router.push(path);
+      emit("update:threeId", "");
+      emit("update:twoId", id);
+    };
+
     return {
       menuGroupRef,
+      visible,
       hasChild,
+      secondClick,
     };
   },
 });

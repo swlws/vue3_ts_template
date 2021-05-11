@@ -6,18 +6,26 @@
     <p>gender: {{ gender }}</p>
   </div>
 
-  <button @click="dobus">do bus</button>
-
   <router-link tag="span" :to="{ path: '/blog/be/java', query: { a: 123 } }"
     >go to</router-link
   >
+
+  <child />
 </template>
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from "@vue/runtime-core";
-
-import { getBus } from "@lib/eventbus";
+import {
+  defineComponent,
+  provide,
+  reactive,
+  toRefs,
+  ref,
+} from "@vue/runtime-core";
+import Child from "./child.vue";
 
 export default defineComponent({
+  components: {
+    Child,
+  },
   setup() {
     // 定义一个reactive对象
     const userInfo = reactive({
@@ -27,6 +35,9 @@ export default defineComponent({
       gender: "male",
     });
 
+    const name = [11, 22, 33];
+    provide("name", name);
+
     // 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
     const userInfoRefs = toRefs(userInfo);
 
@@ -35,20 +46,13 @@ export default defineComponent({
       userInfo.id = 2;
       userInfo.name = "Tom";
       userInfo.age = 20;
+
+      name.push(88);
     }, 2000);
-
-    getBus("swl").once("show", () => {
-      console.log(123);
-    });
-
-    const dobus = () => {
-      getBus("swl").emit("show");
-    };
 
     // 在这里结构toRefs对象才能继续保持响应式
     return {
       ...userInfoRefs,
-      dobus,
     };
   },
 });
