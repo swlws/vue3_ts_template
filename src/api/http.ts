@@ -49,8 +49,12 @@ function errorHandle(error: Error) {
 function preHandleConfig(config: AxiosRequestConfig) {
   const { url = "", params = {}, data = {}, method } = config;
 
-  const tmpParams = { ...params, ...data };
+  // 表单处理
+  if (FormData && data instanceof FormData) {
+    return config;
+  }
 
+  const tmpParams = { ...params, ...data };
   config.url = url.replace(/:([^/]+)/g, (sub, $0) => {
     const v = tmpParams[$0] || "";
     Reflect.deleteProperty(tmpParams, $0);
